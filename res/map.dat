@@ -1,0 +1,6 @@
+p=res/player/player.png
+g=res/terrain/sky.png
+s=res/terrain/grass.png
+---
+[,0,p,0,0]
+[g,g,g,g,g]
