@@ -19,7 +19,7 @@ find_package(SDL2 REQUIRED)
 
 find_package(SDL2_image REQUIRED)
 
-add_executable(game src/main.cpp  src/Game.cpp src/TextureManager.cpp src/Entity.cpp src/Level.cpp)
+add_executable(game src/main.cpp  src/Game.cpp src/TextureManager.cpp src/GameObject.cpp src/Level.cpp include/ECS.h include/Component.h)
 
 target_include_directories(${PROJECT_NAME}
         PUBLIC include

@@ -7,8 +7,8 @@
 #include <SDL_image.h>
 class Game{
 private:
-    bool gameRunning;
-    SDL_Window *window;
+    bool gameRunning{};
+    SDL_Window *window{};
     int cnt = 0;
 
 public:

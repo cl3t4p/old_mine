@@ -1,13 +1,22 @@
 #include "Game.hpp"
-#include "Entity.hpp"
+#include "GameObject.hpp"
 #include "Level.hpp"
 
-Entity* player;
-Entity* enemy;
+#include "ECS.h"
+#include "Component.h"
+
+
+GameObject* player;
+GameObject* enemy;
 Level* level;
 
 
 SDL_Renderer* Game::renderer = nullptr;
+
+
+Manager manager;
+Entity& ecs_player(manager.addEntity());
+
 
 Game::Game() = default;
 Game::~Game() = default;
@@ -35,9 +44,11 @@ void Game::init(const std::string& title, int xpos, int ypos, int width, int hei
         std::cout << "[ERROR] SDL_INIT : " << SDL_GetError() << std::endl;
     }
 
-    player = new Entity("res/player/player.png", 0, 0);
-    enemy = new Entity("res/player/enemy.png", 50, 50);
+    player = new GameObject("res/player/player.png", 0, 0);
+    enemy = new GameObject("res/player/enemy.png", 50, 50);
     level = new Level();
+    ecs_player.addComponent<PositionComponent>();
+    ecs_player.getComponent<PositionComponent>().setX(100);
 }
 
 
@@ -58,8 +69,8 @@ void Game::update() {
     cnt++;
     player->update();
     enemy->update();
-
-    std::cout << "Count : " << cnt << std::endl;
+    ecs_player.update();
+    std::cout << ecs_player.getComponent<PositionComponent>().getX() << "," << ecs_player.getComponent<PositionComponent>().getY() << std::endl;
 }
 
 void Game::render() {

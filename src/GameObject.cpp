@@ -1,15 +1,15 @@
-#include "Entity.hpp"
+#include "GameObject.hpp"
 #include "TextureManager.hpp"
 
-Entity::Entity(const std::string& textureSheet,int x,int y) {
+GameObject::GameObject(const std::string& textureSheet, int x, int y) {
     texture = TextureManager::loadTexture(textureSheet);
     xpos = x;
     ypos = y;
 }
 
-Entity::~Entity() = default;
+GameObject::~GameObject() = default;
 
-void Entity::update() {
+void GameObject::update() {
 
     xpos++;
     ypos++;
@@ -25,7 +25,7 @@ void Entity::update() {
 
 }
 
-void Entity::render() {
+void GameObject::render() {
     SDL_RenderCopy(Game::renderer,texture,&srcRect,&destRect);
 }
 
