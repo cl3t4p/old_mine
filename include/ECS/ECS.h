@@ -53,11 +53,12 @@ public:
         for (const auto &item: components){
             item->update();
         }
+    }
+    void draw(){
         for (const auto &item: components){
             item->draw();
         }
     }
-    void draw(){}
     bool isActive() const {return active;}
     void destroy() {active = false;}
 

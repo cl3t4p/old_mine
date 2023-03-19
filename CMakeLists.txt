@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16)
 project(game)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -19,7 +19,7 @@ find_package(SDL2 REQUIRED)
 
 find_package(SDL2_image REQUIRED)
 
-add_executable(game src/main.cpp  src/Game.cpp src/TextureManager.cpp src/GameObject.cpp src/Level.cpp include/ECS.h include/Component.h)
+add_executable(game src/main.cpp  src/Game.cpp src/TextureManager.cpp src/GameObject.cpp src/Level.cpp include/ECS/ECS.h include/ECS/Component.h include/ECS/SpriteComponent.h include/ECS/TransformComponent.h)
 
 target_include_directories(${PROJECT_NAME}
         PUBLIC include
