@@ -25,6 +25,7 @@ int lvl1[20][25] = {
 };
 
 Level::Level() {
+    //dirt = TextureManager::loadTexture("res/terrain/dirt.png");
     dirt = TextureManager::loadTexture("res/terrain/dirt.png");
     grass = TextureManager::loadTexture("res/terrain/grass.png");
     water = TextureManager::loadTexture("res/terrain/sky.png");

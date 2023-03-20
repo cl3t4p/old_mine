@@ -3,12 +3,20 @@ project(game)
 
 set(CMAKE_CXX_STANDARD 14)
 
-# Add the source files for the project
-if(WIN32)
-  SET(SLD_PATH "")
-else()
-  SET(SDL_PATH "SDL2/")
+
+# Make that the system like Linux who's SDL directory uses <SDL2/SDL> become just <SDL> just like windows
+if(NOT SDL2_DIR)
+  set(SDL2_DIR "" CACHE PATH "SDL2 directory")
 endif()
+
+find_path(SDL2_INCLUDE_DIR SDL.h
+        HINTS
+        ENV SDL2DIR
+        ${SDL2_DIR}
+        PATH_SUFFIXES SDL2
+        # path suffixes to search inside ENV{SDL2DIR}
+        include/SDL2 include
+        )
 
 if(WIN32)
   set(JPEG_INCLUDE_DIR "C:/Program Files (x86)/jpeg/include")
@@ -49,4 +57,8 @@ if(WIN32)
                                                SDL2_image::SDL2_image mingw32)
 else()
   target_link_libraries(${PROJECT_NAME} PUBLIC ${SDL2_LIBRARIES} SDL2_image::SDL2_image)
+endif()
+
+if(NOT APPLE)
+  find_package(Threads)
 endif()

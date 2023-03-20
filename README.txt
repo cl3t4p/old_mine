@@ -1,0 +1,1 @@
+Remember to create a link for the `res/` folder into the cmake output folder
